@@ -1,0 +1,209 @@
+global
+function math(context) {
+    return context.scopes.some(s => s.startsWith("meta.math"));
+}
+
+function notmath(context) {
+    return  context.scopes.findLastIndex(s => s.startsWith("meta.math")) <= context.scopes.findLastIndex(s => s.startsWith("comment") || s.startsWith("meta.text.normal.tex"));
+}
+endglobal
+
+snippet reff "References a Figure" A
+Fig. \ref{fig:${1:label}}
+endsnippet
+
+snippet reft "References a table" A
+Table \ref{tab:${1:label}}
+endsnippet
+
+snippet refe "References an equation" A
+Eq. (\ref{eq:${1:label}})
+endsnippet
+
+snippet refsf "References a Figure inset" A
+Fig. \ref{fig:${1:label}}(${2:inset})
+endsnippet
+
+context notmath(context)
+snippet leq "Inline equation" A
+\( $1 \) $0
+endsnippet
+
+context notmath(context)
+snippet deq "display equation" A
+\[ $1 \] $0
+endsnippet
+
+context notmath(context)
+snippet fr_ "freq equation" A
+\$ f_{ \mathrm{$1} } = \qty{$2}{\GHz} \$ $0
+endsnippet
+
+context math(context)
+snippet fr_ "freq equation" A
+f_{ \mathrm{$1} } = \qty{$2}{\GHz} $0
+endsnippet
+
+context notmath(context)
+snippet f_ "freq subindex" A
+\$ f_{ \mathrm{$1} } \$ $0
+endsnippet
+
+context math(context)
+snippet f_ "freq subindex" A
+f_{ \mathrm{$1} } $0
+endsnippet
+
+context notmath(context)
+snippet p_ "power subindex" A
+\$ P_{ \mathrm{$1} } \$ $0
+endsnippet
+
+context math(context)
+snippet p_ "power subindex" A
+P_{ \mathrm{$1} } $0
+endsnippet
+
+context notmath(context)
+snippet po_ "power equation" A
+\$ P_{ \mathrm{$1} } = \qty{$2}{\dBm} \$ $0
+endsnippet
+
+context math(context)
+snippet po_ "power equation" A
+P_{ \mathrm{$1} } = \qty{$2}{\dBm} $0
+endsnippet
+
+
+context math(context)
+snippet cos "cos" A
+\cos($0)
+endsnippet
+
+context math(context)
+snippet sin "sin" A
+\sin($0)
+endsnippet
+
+snippet beq "equation" Ab
+\begin{equation}\label{eq:${1:label}}
+$0
+\end{equation}
+endsnippet
+
+snippet baeq "equation with array" Ab
+\begin{equation}\label{eq:${1:label}}
+$0 \\
+\end{equation}
+endsnippet
+
+snippet qty "siunitx input" A
+\qty{${1:number}}{\\${2:dimension}}
+endsnippet
+
+context math(context)
+snippet `lr(\(\)|\[\]|\{\}|\.|<|\||2\|)` "Inserts left-rigth braces" A
+\\left``let c = m[1];
+if (c.length == 2){
+d = c.split('');
+rv = d[0];}
+else
+{rv = m[1]}
+`` $0 \\right``if (c.length == 2){rv = d[1];}else{rv = m[1]}``
+endsnippet
+
+snippet figw "Inserts a figure with width reference" Ab
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{$1}
+\caption{${2:Caption}}
+\label{fig:${3:figLabel}}
+\end{figure}
+endsnippet
+
+snippet figs "Inserts a figure with scale reference" Ab
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale = 1]{$1}
+\caption{${2:Caption}}
+\label{fig:${3:figLabel}}
+\end{figure}
+endsnippet
+
+snippet ref "Random reference"
+\ref{${1:label}}
+endsnippet
+
+snippet cit "Cite" A
+\cite{${1:citeKey}}
+endsnippet
+
+snippet mrm "Math Roman" A
+\mathrm{$1}$0
+endsnippet
+
+context math(context)
+snippet fr "Fraction" A
+\frac{ ${1:${TM_SELECTED_TEXT:nm}} }{ ${2:dn} }
+endsnippet
+
+context math(context)
+snippet dfr "Display fraction" A
+\dfrac{ ${1:nm} }{ ${2:dm} }
+endsnippet
+
+context math(context)
+snippet ^ "power" A
+^{ $1 } $0
+endsnippet
+
+context math(context)
+snippet `(__)` "underscore" A
+_{ $1 } $0
+endsnippet
+
+context math(context)
+snippet vec "underscore" A
+\vec{ $1 } $0
+endsnippet
+
+
+#sections
+context notmath(context)
+snippet sec "Section" Ab
+\section{${1:${VISUAL:Section title}}}
+endsnippet
+
+snippet tab "Inserts a table" A
+\begin{table}[htbp]
+\centering
+\caption{${1:Caption}}
+
+\begin{tblr}{
+    width = \textwidth,
+    colspec = {|X[1,c]|X[1,c]|},
+    row{1} = {fg=white, bg=NavyBlue} % To color header
+}
+\hline
+No. & \textbf{Title} \\
+\hline
+No. & \textbf{Title} \\
+\hline
+\end{tblr}
+\label{tab:${2:tabLabel}}
+\end{table}
+endsnippet
+
+snippet note_template "Basic article template"
+\documentclass[a4paper,12pt]{article}
+\usepackage{standard_preamble}
+
+\title{${1: Title}}
+\author{${2: Rodrigo}}
+\date{\today}
+
+\begin{document}
+\maketitle
+$0
+\end{document}
+endsnippet
