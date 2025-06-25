@@ -12,6 +12,10 @@ snippet reff "References a Figure" A
 Fig. \ref{fig:${1:label}}
 endsnippet
 
+snippet // "Fraction simple" Ai
+\dfrac{ $1 }{ $2 } $0
+endsnippet
+
 snippet reft "References a table" A
 Table \ref{tab:${1:label}}
 endsnippet
@@ -26,7 +30,7 @@ endsnippet
 
 context notmath(context)
 snippet leq "Inline equation" A
-\( $1 \) $0
+\$ $1 \$ $0
 endsnippet
 
 context notmath(context)
@@ -35,12 +39,12 @@ snippet deq "display equation" A
 endsnippet
 
 context notmath(context)
-snippet fr_ "freq equation" A
+snippet fe_ "freq equation" A
 \$ f_{ \mathrm{$1} } = \qty{$2}{\GHz} \$ $0
 endsnippet
 
 context math(context)
-snippet fr_ "freq equation" A
+snippet fe_ "freq equation" A
 f_{ \mathrm{$1} } = \qty{$2}{\GHz} $0
 endsnippet
 
@@ -65,12 +69,12 @@ P_{ \mathrm{$1} } $0
 endsnippet
 
 context notmath(context)
-snippet po_ "power equation" A
+snippet pe_ "power equation" A
 \$ P_{ \mathrm{$1} } = \qty{$2}{\dBm} \$ $0
 endsnippet
 
 context math(context)
-snippet po_ "power equation" A
+snippet pe_ "power equation" A
 P_{ \mathrm{$1} } = \qty{$2}{\dBm} $0
 endsnippet
 
@@ -95,10 +99,6 @@ snippet baeq "equation with array" Ab
 \begin{equation}\label{eq:${1:label}}
 $0 \\
 \end{equation}
-endsnippet
-
-snippet qty "siunitx input" A
-\qty{${1:number}}{\\${2:dimension}}
 endsnippet
 
 context math(context)
@@ -152,13 +152,42 @@ snippet dfr "Display fraction" A
 \dfrac{ ${1:nm} }{ ${2:dm} }
 endsnippet
 
+##############################################################################
+# quantity (siunitx)
+##############################################################################
+
+snippet qty "siunitx input" A
+\qty{${1:number}}{\\${2:dimension}}
+endsnippet
+
+snippet `(-?\d+(?:\.\d+)?)(\s?[a-zA-Z]+)` "quantity from data"
+\qty{``rv = m[1];``}{\\``
+let a = m[2];
+rv = a.replace(/ /g, '');
+``$1}$0
+endsnippet
+
+##############################################################################
+# Super- and Sub- scripts
+##############################################################################
+
+context math(context)
+snippet `([ ]*)sp` "superscript" Ai
+^{ $1 }$0
+endsnippet
+
 context math(context)
 snippet ^ "power" A
 ^{ $1 } $0
 endsnippet
 
 context math(context)
-snippet `(__)` "underscore" A
+snippet `([a-zA-Z])sb` "subscript nought" A
+``rv = m[1]``_{\mathrm{ $0 }}
+endsnippet
+
+context math(context)
+snippet _ "underscore" Ai
 _{ $1 } $0
 endsnippet
 
@@ -168,11 +197,18 @@ snippet vec "underscore" A
 endsnippet
 
 
-#sections
+##############################################################################
+# Sections and subsections etc
+##############################################################################
 context notmath(context)
 snippet sec "Section" Ab
 \section{${1:${VISUAL:Section title}}}
 endsnippet
+
+
+##############################################################################
+# Figures and tables
+##############################################################################
 
 snippet tab "Inserts a table" A
 \begin{table}[htbp]
@@ -206,4 +242,231 @@ snippet note_template "Basic article template"
 \maketitle
 $0
 \end{document}
+endsnippet
+
+##############################################################################
+# Utilities
+##############################################################################
+context math(context)
+snippet ;a "Insert @ symbol" Ai
+@
+endsnippet
+
+snippet ;f "Insert & symbol to separate rows" Ai
+&
+endsnippet
+snippet ;nl "Insert new line" Ai
+\\\\
+endsnippet
+snippet ;hl "Insert hline" Ai
+\hline
+endsnippet
+snippet ;cl "Insert cline" Ai
+\cline{$1}$0
+endsnippet
+
+
+snippet ghz "Format GHz" Ai
+GHz
+endsnippet
+
+snippet db "Format dB" Ai
+dB
+endsnippet
+##############################################################################
+# Greek alphabet
+##############################################################################
+context math(context)
+snippet @a "α" Ai
+\alpha 
+endsnippet
+
+context math(context)
+snippet @b "β" Ai
+\beta 
+endsnippet
+
+context math(context)
+snippet @g "γ" Ai
+\gamma 
+endsnippet
+
+context math(context)
+snippet @G "Γ" Ai
+\Gamma 
+endsnippet
+
+context math(context)
+snippet @d "δ" Ai
+\delta 
+endsnippet
+
+context math(context)
+snippet @D "Δ" Ai
+\Delta 
+endsnippet
+
+context math(context)
+snippet @e "ε" Ai
+\epsilon 
+endsnippet
+
+context math(context)
+snippet @ve "variant of ε" Ai
+\varepsilon 
+endsnippet
+
+context math(context)
+snippet @z "ζ" Ai
+\zeta 
+endsnippet
+
+context math(context)
+snippet @eta "η" Ai
+\eta 
+endsnippet
+
+context math(context)
+snippet @t "θ" Ai
+\theta 
+endsnippet
+
+context math(context)
+snippet @vt "variant of θ" Ai
+\vartheta 
+endsnippet
+
+context math(context)
+snippet @T "Θ" Ai
+\Theta 
+endsnippet
+
+context math(context)
+snippet @i "ι" Ai
+\iota 
+endsnippet
+
+context math(context)
+snippet @k "κ" Ai
+\kappa 
+endsnippet
+
+context math(context)
+snippet @l "λ" Ai
+\lambda 
+endsnippet
+
+context math(context)
+snippet @L "Λ" Ai
+\Lambda 
+endsnippet
+
+context math(context)
+snippet @mu "μ" Ai
+\mu 
+endsnippet
+
+context math(context)
+snippet @nu "ν" Ai
+\nu 
+endsnippet
+
+context math(context)
+snippet @xi "ξ" Ai
+\xi 
+endsnippet
+
+context math(context)
+snippet @Xi "Ξ" Ai
+\Xi 
+endsnippet
+
+context math(context)
+snippet @pi "π" Ai
+\pi 
+endsnippet
+
+context math(context)
+snippet @Pi "Π" Ai
+\Pi 
+endsnippet
+
+context math(context)
+snippet @rho "ρ" Ai
+\rho 
+endsnippet
+
+context math(context)
+snippet @vr "variant of ρ" Ai
+\varrho 
+endsnippet
+
+context math(context)
+snippet @s "σ" Ai
+\sigma 
+endsnippet
+
+context math(context)
+snippet @S "Σ" Ai
+\Sigma 
+endsnippet
+
+context math(context)
+snippet @vs "variant of σ" Ai
+\varsigma 
+endsnippet
+
+context math(context)
+snippet @tau "τ" Ai
+\tau 
+endsnippet
+
+context math(context)
+snippet @u "υ" Ai
+\upsilon 
+endsnippet
+
+context math(context)
+snippet @U "Υ" Ai
+\Upsilon 
+endsnippet
+
+context math(context)
+snippet @phi "φ" Ai
+\phi 
+endsnippet
+
+context math(context)
+snippet @vp "variant of φ" Ai
+\varphi 
+endsnippet
+
+context math(context)
+snippet @Phi "Φ" Ai
+\Phi 
+endsnippet
+
+context math(context)
+snippet @chi "χ" Ai
+\chi 
+endsnippet
+
+context math(context)
+snippet @psi "ψ" Ai
+\psi 
+endsnippet
+
+context math(context)
+snippet @Psi "Ψ" Ai
+\Psi 
+endsnippet
+
+context math(context)
+snippet @o "ω" Ai
+\omega 
+endsnippet
+
+context math(context)
+snippet @O "Ω" Ai
+\Omega 
 endsnippet
