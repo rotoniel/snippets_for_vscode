@@ -20,7 +20,7 @@ snippet reft "References a table" A
 Table \ref{tab:${1:label}}
 endsnippet
 
-snippet refe "References an equation" A
+snippet refeq "References an equation" A
 Eq. (\ref{eq:${1:label}})
 endsnippet
 
@@ -248,11 +248,11 @@ endsnippet
 # Utilities
 ##############################################################################
 context math(context)
-snippet ;a "Insert @ symbol" Ai
+snippet :a "Insert @ symbol" Ai
 @
 endsnippet
 
-snippet ;f "Insert & symbol to separate rows" Ai
+snippet :y "Insert & symbol to separate rows" Ai
 &
 endsnippet
 snippet ;nl "Insert new line" Ai
