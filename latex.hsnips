@@ -25,7 +25,7 @@ Eq. (\ref{eq:${1:label}})
 endsnippet
 
 snippet refsf "References a Figure inset" A
-Fig. \ref{fig:${1:label}}(${2:inset})
+Fig.~\ref{fig:${1:label}}(${2:inset})
 endsnippet
 
 context notmath(context)
