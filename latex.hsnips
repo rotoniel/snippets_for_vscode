@@ -130,6 +130,24 @@ snippet figs "Inserts a figure with scale reference" Ab
 \end{figure}
 endsnippet
 
+snippet figc "Inserts a figure with column width" Ab
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{$1}
+\caption{${2:Caption}}
+\label{fig:${3:figLabel}}
+\end{figure}
+endsnippet
+
+snippet fig2c "Inserts a figure with full width in two columns template" Ab
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\textwidth]{$1}
+\caption{${2:Caption}}
+\label{fig:${3:figLabel}}
+\end{figure*}
+endsnippet
+
 snippet ref "Random reference"
 \ref{${1:label}}
 endsnippet
@@ -221,9 +239,9 @@ snippet tab "Inserts a table" A
     row{1} = {fg=white, bg=NavyBlue} % To color header
 }
 \hline
-No. & \textbf{Title} \\
+No. & \textbf{Title} \\\\
 \hline
-No. & \textbf{Title} \\
+No. & \textbf{Title} \\\\
 \hline
 \end{tblr}
 \label{tab:${2:tabLabel}}
