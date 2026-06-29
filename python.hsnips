@@ -1,0 +1,28 @@
+snippet fig,a "creates a subplot" A
+fig, ax = plt.subplots($0 figsize=(8,2.5), constrained_layout=True)
+ax = ax
+endsnippet
+
+snippet axxlim "set ax x-limit" A
+ax$1.set_xlim($2)
+endsnippet
+
+snippet axxlab "set ax x-label" A
+ax$1.set_xlabel($3'$2')$0
+endsnippet
+
+snippet axylim "set ax y-limit" A
+ax$1.set_ylim($2)
+endsnippet
+
+snippet axylab "set ax y-label" A
+ax$1.set_ylabel($3'$2')$0
+endsnippet
+
+snippet saxt "set ax title" A
+ax$1.set_title($3'$2')$0
+endsnippet
+
+snippet axasp "ax set_box_aspect" A
+ax$1.set_box_aspect('$2')
+endsnippet

@@ -8,54 +8,54 @@ function notmath(context) {
 }
 endglobal
 
-snippet reff "References a Figure" A
-Fig. \ref{fig:${1:label}}
+snippet reff "References a Figure" Ai
+Fig.~\ref{fig:${1:label}}
 endsnippet
 
 snippet // "Fraction simple" Ai
-\dfrac{ $1 }{ $2 } $0
+\dfrac{$1}{$2} $0
 endsnippet
 
-snippet reft "References a table" A
+snippet reft "References a table" Ai
 Table \ref{tab:${1:label}}
 endsnippet
 
-snippet refeq "References an equation" A
-Eq. (\ref{eq:${1:label}})
+snippet refeq "References an equation" Ai
+\\eqref{eq:${1:label}}
 endsnippet
 
-snippet refsf "References a Figure inset" A
+snippet refsf "References a Figure inset" Ai
 Fig.~\ref{fig:${1:label}}(${2:inset})
 endsnippet
 
 context notmath(context)
-snippet leq "Inline equation" A
-\$ $1 \$ $0
+snippet leq "Inline equation" Ai
+\$ $1 \$$0
 endsnippet
 
 context notmath(context)
-snippet deq "display equation" A
+snippet deq "display equation" Ai
 \[ $1 \] $0
 endsnippet
 
 context notmath(context)
-snippet fe_ "freq equation" A
-\$ f_{ \mathrm{$1} } = \qty{$2}{\GHz} \$ $0
+snippet fe_ "freq equation" Ai
+\$ f_{\mathrm{$1}} = \qty{$2}{\GHz} \$ $0
 endsnippet
 
 context math(context)
-snippet fe_ "freq equation" A
-f_{ \mathrm{$1} } = \qty{$2}{\GHz} $0
+snippet fe_ "freq equation" Ai
+f_{\mathrm{$1}} = \qty{$2}{\GHz} $0
 endsnippet
 
 context notmath(context)
 snippet f_ "freq subindex" A
-\$ f_{ \mathrm{$1} } \$ $0
+\$ f_{\mathrm{$1}} \$ $0
 endsnippet
 
 context math(context)
-snippet f_ "freq subindex" A
-f_{ \mathrm{$1} } $0
+snippet f_ "freq subindex" Ai
+f_{\mathrm{$1}} $0
 endsnippet
 
 context notmath(context)
@@ -97,7 +97,7 @@ endsnippet
 
 snippet baeq "equation with array" Ab
 \begin{equation}\label{eq:${1:label}}
-$0 \\
+$0 \\\\
 \end{equation}
 endsnippet
 
@@ -115,7 +115,7 @@ endsnippet
 snippet figw "Inserts a figure with width reference" Ab
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{$1}
+\includegraphics[width=\textwidth]{figures/$1}
 \caption{${2:Caption}}
 \label{fig:${3:figLabel}}
 \end{figure}
@@ -124,7 +124,7 @@ endsnippet
 snippet figs "Inserts a figure with scale reference" Ab
 \begin{figure}[htbp]
 \centering
-\includegraphics[scale = 1]{$1}
+\includegraphics[scale = 1]{figures/$1}
 \caption{${2:Caption}}
 \label{fig:${3:figLabel}}
 \end{figure}
@@ -133,7 +133,7 @@ endsnippet
 snippet figc "Inserts a figure with column width" Ab
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{$1}
+\includegraphics[width=\columnwidth]{figures/$1}
 \caption{${2:Caption}}
 \label{fig:${3:figLabel}}
 \end{figure}
@@ -142,7 +142,7 @@ endsnippet
 snippet fig2c "Inserts a figure with full width in two columns template" Ab
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=\textwidth]{$1}
+\includegraphics[width=\textwidth]{figures/$1}
 \caption{${2:Caption}}
 \label{fig:${3:figLabel}}
 \end{figure*}
@@ -156,18 +156,18 @@ snippet cit "Cite" A
 \cite{${1:citeKey}}
 endsnippet
 
-snippet mrm "Math Roman" A
+snippet mrm "Math Roman" Ai
 \mathrm{$1}$0
 endsnippet
 
 context math(context)
-snippet fr "Fraction" A
-\frac{ ${1:${TM_SELECTED_TEXT:nm}} }{ ${2:dn} }
+snippet fr "Fraction" Ai
+\frac{${1:${TM_SELECTED_TEXT:nm}}}{${2:dn}}
 endsnippet
 
 context math(context)
 snippet dfr "Display fraction" A
-\dfrac{ ${1:nm} }{ ${2:dm} }
+\dfrac{${1:nm} }{ ${2:dm}}
 endsnippet
 
 ##############################################################################
@@ -191,29 +191,28 @@ endsnippet
 
 context math(context)
 snippet `([ ]*)sp` "superscript" Ai
-^{ $1 }$0
+^{$1}$0
 endsnippet
 
 context math(context)
-snippet ^ "power" A
-^{ $1 } $0
+snippet ^ "power" Ai
+^{$1} $0
 endsnippet
 
 context math(context)
 snippet `([a-zA-Z])sb` "subscript nought" A
-``rv = m[1]``_{\mathrm{ $0 }}
+``rv = m[1]``_{\mathrm{$0}}
 endsnippet
 
 context math(context)
 snippet _ "underscore" Ai
-_{ $1 } $0
+_{$1}$0
 endsnippet
 
 context math(context)
-snippet vec "underscore" A
-\vec{ $1 } $0
+snippet vec "underscore" Ai
+\vec{$1} $0
 endsnippet
-
 
 ##############################################################################
 # Sections and subsections etc
@@ -223,6 +222,15 @@ snippet sec "Section" Ab
 \section{${1:${VISUAL:Section title}}}
 endsnippet
 
+context notmath(context)
+snippet ssc "sub Section" Ab
+\subsection{${1:${VISUAL:Section title}}}
+endsnippet
+
+context notmath(context)
+snippet sss "sub sub Section" Ab
+\subsubsection{${1:${VISUAL:Section title}}}
+endsnippet
 
 ##############################################################################
 # Figures and tables
@@ -288,7 +296,7 @@ snippet ghz "Format GHz" Ai
 GHz
 endsnippet
 
-snippet db "Format dB" Ai
+snippet db "Format dB" A
 dB
 endsnippet
 ##############################################################################
@@ -296,195 +304,195 @@ endsnippet
 ##############################################################################
 context math(context)
 snippet @a "α" Ai
-\alpha 
+\alpha
 endsnippet
 
 context math(context)
 snippet @b "β" Ai
-\beta 
+\beta
 endsnippet
 
 context math(context)
 snippet @g "γ" Ai
-\gamma 
+\gamma
 endsnippet
 
 context math(context)
 snippet @G "Γ" Ai
-\Gamma 
+\Gamma
 endsnippet
 
 context math(context)
 snippet @d "δ" Ai
-\delta 
+\delta
 endsnippet
 
 context math(context)
 snippet @D "Δ" Ai
-\Delta 
+\Delta
 endsnippet
 
 context math(context)
 snippet @e "ε" Ai
-\epsilon 
+\epsilon
 endsnippet
 
 context math(context)
 snippet @ve "variant of ε" Ai
-\varepsilon 
+\varepsilon
 endsnippet
 
 context math(context)
 snippet @z "ζ" Ai
-\zeta 
+\zeta
 endsnippet
 
 context math(context)
 snippet @eta "η" Ai
-\eta 
+\eta
 endsnippet
 
 context math(context)
 snippet @t "θ" Ai
-\theta 
+\theta
 endsnippet
 
 context math(context)
 snippet @vt "variant of θ" Ai
-\vartheta 
+\vartheta
 endsnippet
 
 context math(context)
 snippet @T "Θ" Ai
-\Theta 
+\Theta
 endsnippet
 
 context math(context)
 snippet @i "ι" Ai
-\iota 
+\iota
 endsnippet
 
 context math(context)
 snippet @k "κ" Ai
-\kappa 
+\kappa
 endsnippet
 
 context math(context)
 snippet @l "λ" Ai
-\lambda 
+\lambda
 endsnippet
 
 context math(context)
 snippet @L "Λ" Ai
-\Lambda 
+\Lambda
 endsnippet
 
 context math(context)
 snippet @mu "μ" Ai
-\mu 
+\mu
 endsnippet
 
 context math(context)
 snippet @nu "ν" Ai
-\nu 
+\nu
 endsnippet
 
 context math(context)
 snippet @xi "ξ" Ai
-\xi 
+\xi
 endsnippet
 
 context math(context)
 snippet @Xi "Ξ" Ai
-\Xi 
+\Xi
 endsnippet
 
 context math(context)
 snippet @pi "π" Ai
-\pi 
+\pi
 endsnippet
 
 context math(context)
 snippet @Pi "Π" Ai
-\Pi 
+\Pi
 endsnippet
 
 context math(context)
 snippet @rho "ρ" Ai
-\rho 
+\rho
 endsnippet
 
 context math(context)
 snippet @vr "variant of ρ" Ai
-\varrho 
+\varrho
 endsnippet
 
 context math(context)
 snippet @s "σ" Ai
-\sigma 
+\sigma
 endsnippet
 
 context math(context)
 snippet @S "Σ" Ai
-\Sigma 
+\Sigma
 endsnippet
 
 context math(context)
 snippet @vs "variant of σ" Ai
-\varsigma 
+\varsigma
 endsnippet
 
 context math(context)
 snippet @tau "τ" Ai
-\tau 
+\tau
 endsnippet
 
 context math(context)
 snippet @u "υ" Ai
-\upsilon 
+\upsilon
 endsnippet
 
 context math(context)
 snippet @U "Υ" Ai
-\Upsilon 
+\Upsilon
 endsnippet
 
 context math(context)
 snippet @phi "φ" Ai
-\phi 
+\phi
 endsnippet
 
 context math(context)
 snippet @vp "variant of φ" Ai
-\varphi 
+\varphi
 endsnippet
 
 context math(context)
 snippet @Phi "Φ" Ai
-\Phi 
+\Phi
 endsnippet
 
 context math(context)
 snippet @chi "χ" Ai
-\chi 
+\chi
 endsnippet
 
 context math(context)
 snippet @psi "ψ" Ai
-\psi 
+\psi
 endsnippet
 
 context math(context)
 snippet @Psi "Ψ" Ai
-\Psi 
+\Psi
 endsnippet
 
 context math(context)
 snippet @o "ω" Ai
-\omega 
+\omega
 endsnippet
 
 context math(context)
 snippet @O "Ω" Ai
-\Omega 
+\Omega
 endsnippet
