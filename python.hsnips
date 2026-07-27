@@ -1,6 +1,22 @@
-snippet fig,a "creates a subplot" A
-fig, ax = plt.subplots($0 figsize=(8,2.5), constrained_layout=True)
-ax = ax
+snippet figax "creates a subplot" A
+fig, ax = plt.subplots($1, figsize=(8,2.5), constrained_layout=True)
+ax$0
+endsnippet
+
+snippet `ax(\d+);` "Generate multiple matplotlib axes" A
+``
+
+let n = m[1]; //parseInt(m[1]);
+let result = [];
+for (let i = 1; i <= n; i++) {
+    result.push(`ax${i}`);
+}
+rv = result.join(', ') + ' = ax';
+``$0
+endsnippet
+
+snippet toast "give toast" A
+TOAsT
 endsnippet
 
 snippet axxlim "set ax x-limit" A
