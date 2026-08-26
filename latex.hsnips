@@ -8,6 +8,10 @@ function notmath(context) {
 }
 endglobal
 
+snippet refse "References a section" Ai
+Section \ref{sec:${1:sec-title}}$0
+endsnippet
+
 snippet reff "References a Figure" Ai
 Fig.~\ref{fig:${1:label}}
 endsnippet
