@@ -35,8 +35,8 @@ snippet axylab "set ax y-label" A
 ax$1.set_ylabel($3'$2')$0
 endsnippet
 
-snippet saxt "set ax title" A
-ax$1.set_title($3'$2')$0
+snippet axt "set ax title" A
+ax$1.set_title($2'$3')$0
 endsnippet
 
 snippet axasp "ax set_box_aspect" A

@@ -179,28 +179,7 @@ snippet `([a-z]{2,});;` "LaTeX Glossary Entry" A
 endsnippet
 
 # snippet `([a-z]{2,5})\s` "Automatic \gls{} lookup" Ab
-snippet `(?:^|[\s(),.:;])([a-z]{2,5})([\s,.:;])` "Automatic \gls{} lookup with punctuation" A
-``
-const validWords = new Set([
-  "arof", "drof", "rof", "im", "dd", "ngn", "pfc", "ofc", "dl", "ul", "lo", "elo", "olo", "mzm", "iqmzm", "npmzm", "np", 
-  "mmw", "udc", "ran", "fg", "ofh", "xh", "pon", "dml", "uc", "dc", "rrh", "co", "bbu", "cu", "du", "ru", "edfa", "rf", 
-  "if", "ocsr", "ber", "evm", "qam", "smf", "b2b", "pd", "er", "bw", "lna", "pa", "awg", "aawg", "cw", "adc", "dac", 
-  "capex", "opex", "comp", "ptp", "ptmp", "dipp", "wdm", "dwdm", "udwdm", "dm", "dsb", "ssb", "dsp", "cd", "dsm", "eopt", 
-  "opte", "cpri", "ecpri", "ifof", "il", "los", "mimo", "onu", "olt", "paa", "qos", "rf", "roadm", "wss", "scm", "sdm", "snr", 
-  "tdm", "ue", "fs", "oran", "cran", "frstg", "sg", "tg" ,"cg", "ai", "kpi", "eom"
-]);
 
-const word = m[1];
-const trailingPunct = m[2];
-
-if (validWords.has(word)) {
-  rv = ` \\gls{${word}}${trailingPunct}`;
-} else {
-  // If not found in the list, keep the original typed string intact
-  rv = ` ${word}${trailingPunct}`;
-}
-``
-endsnippet
 
 snippet nacr "New glossary entry"
 \newacronym{${1:acronym-label}}{${2:EAT}}{${3:Extended Acronym Text}}$0
@@ -225,8 +204,16 @@ rv = a.replace(/ /g, '');
 ``$1}$0
 endsnippet
 
-snippet \u "siunitx unit" Ai
+snippet unit; "siunitx unit" Ai
 \unit{\\${1:unit}}$0
+endsnippet
+
+snippet num; "siunitx number" Ai
+\num{$1}$0
+endsnippet
+
+snippet lqty "siunitx input" A
+\qtylist{${1:number}}{\\${2:dimension}}
 endsnippet
 
 ##############################################################################
@@ -240,7 +227,7 @@ endsnippet
 
 context math(context)
 snippet pi "pi" Ai
-\\pi $0
+\\pi$0
 endsnippet
 
 context math(context)
@@ -544,4 +531,27 @@ endsnippet
 context math(context)
 snippet @O "Ω" Ai
 \Omega
+endsnippet
+
+snippet `(^|[\s(-])([a-z]{2,5})([\s,.:;)-])` "Automatic \gls{} lookup with punctuation" A
+``
+const validWords = new Set([
+  "arof", "drof", "rof", "im", "dd", "ngn", "pfc", "ofc", "dl", "ul", "lo", "elo", "olo", "mzm", "iqmzm", "npmzm", "np", 
+  "mmw", "udc", "ran", "fg", "ofh", "xh", "pon", "dml", "uc", "dc", "rrh", "co", "bbu", "cu", "du", "ru", "edfa", "rf", 
+  "if", "ocsr", "ber", "evm", "qam", "smf", "btb", "pd", "er", "bw", "lna", "pa", "awg", "aawg", "cw", "adc", "dac", 
+  "capex", "opex", "comp", "ptp", "ptmp", "dipp", "wdm", "dwdm", "udwdm", "dm", "dsb", "ssb", "dsp", "cd", "dsm", "eopt", 
+  "opte", "cpri", "ecpri", "ifof", "il", "los", "mimo", "onu", "olt", "paa", "qos", "rf", "roadm", "wss", "scm", "sdm", "snr", 
+  "tdm", "ue", "fs", "oran", "cran", "frstg", "sg", "tg" ,"cg", "ai", "kpi", "eom", "pp", "omi", "lsb", "usb", "fec", "sc", "opb"
+]);
+const pre = m[1]
+const word = m[2];
+const trailingPunct = m[3];
+
+if (validWords.has(word)) {
+  rv = `${pre}\\gls{${word}}${trailingPunct}`;
+} else {
+  // If not found in the list, keep the original typed string intact
+  rv = `${pre}${word}${trailingPunct}`;
+}
+``
 endsnippet
