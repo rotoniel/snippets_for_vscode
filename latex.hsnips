@@ -25,7 +25,7 @@ Table \ref{tab:${1:label}}
 endsnippet
 
 snippet refeq "References an equation" Ai
-\\eqref{eq:${1:label}}
+Eq. \\eqref{eq:${1:label}}
 endsnippet
 
 snippet refsf "References a Figure inset" Ai
