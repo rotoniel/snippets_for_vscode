@@ -442,7 +442,7 @@ snippet @mu "μ" Ai
 endsnippet
 
 context math(context)
-snippet @nu "ν" Ai
+snippet @n "ν" Ai
 \nu
 endsnippet
 
@@ -555,7 +555,7 @@ const validWords = new Set([
   "capex", "opex", "comp", "ptp", "ptmp", "dipp", "wdm", "dwdm", "udwdm", "dm", "dsb", "ssb", "dsp", "cd", "dsm", "eopt", 
   "opte", "cpri", "ecpri", "ifof", "il", "los", "mimo", "onu", "olt", "paa", "qos", "rf", "roadm", "wss", "scm", "sdm", "snr", 
   "tdm", "ue", "fs", "oran", "cran", "frstg", "sg", "tg" ,"cg", "ai", "kpi", "eom", "pp", "omi", "lsb", "usb", "fec", "sc", "opb",
-  "rop", "bpf","hpf","lpf", "admzm", "mac", "ase"
+  "rop", "bpf","hpf","lpf", "admzm", "mac", "ase", "bps", "qp"
 ]);
 const pre = m[1]
 const word = m[2];
