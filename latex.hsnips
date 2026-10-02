@@ -546,7 +546,7 @@ snippet @O "Ω" Ai
 \Omega
 endsnippet
 
-snippet `(^|[\s(-])([a-z]{2,5})([\s,.:;)-])` "Automatic \gls{} lookup with punctuation" A
+snippet `(^|[\s(-])([a-z]{2,5})([\s,.:;s)-])` "Automatic \gls{} lookup with punctuation" A
 ``
 const validWords = new Set([
   "arof", "drof", "rof", "im", "dd", "ngn", "pfc", "ofc", "dl", "ul", "lo", "elo", "olo", "mzm", "iqmzm", "npmzm", "np", 
@@ -555,7 +555,8 @@ const validWords = new Set([
   "capex", "opex", "comp", "ptp", "ptmp", "dipp", "wdm", "dwdm", "udwdm", "dm", "dsb", "ssb", "dsp", "cd", "dsm", "eopt", 
   "opte", "cpri", "ecpri", "ifof", "il", "los", "mimo", "onu", "olt", "paa", "qos", "rf", "roadm", "wss", "scm", "sdm", "snr", 
   "tdm", "ue", "fs", "oran", "cran", "frstg", "sg", "tg" ,"cg", "ai", "kpi", "eom", "pp", "omi", "lsb", "usb", "fec", "sc", "opb",
-  "rop", "bpf","hpf","lpf", "admzm", "mac", "ase", "bps", "qp", "lte", "iot"
+  "rop", "bpf","hpf","lpf", "admzm", "mac", "ase", "bps", "qp", "lte", "iot",
+  "xhaul", "tx","rx", "ohd", "ttd"
 ]);
 const pre = m[1]
 const word = m[2];
